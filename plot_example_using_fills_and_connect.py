@@ -1,0 +1,25 @@
+import numpy as np
+import pyqtgraph as pg
+from bwplot import cbox
+from pyqtgraph.Qt import QtGui, QtCore
+
+plt = pg.plot()
+plt.setWindowTitle('pyqtgraph example: Legend')
+plt.addLegend()
+
+x = [3, 5, 5, 3, 3, 7, 9, 9, 7, 7, 7]
+y = [2, 2, 4, 4, 2, 6, 6, 7, 7, 6, 6]
+connect = np.array([1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0])
+
+pen = 'w'
+brush = pg.mkBrush(cbox(0, as255=True, alpha=80))
+
+c = plt.plot(x, y, pen='w', connect=connect, fillBrush=brush, fillLevel='enclosed', name="fillLevel='enclosed'")
+
+x = [13, 15, 15, 13, 13, 17, 19, 19, 17, 17, 17]
+c = plt.plot(x, y, pen='y', connect=connect, fillBrush='r', fillLevel=0, name='fillLevel=0')
+
+if __name__ == '__main__':
+    import sys
+    if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
+        QtGui.QApplication.instance().exec_()
